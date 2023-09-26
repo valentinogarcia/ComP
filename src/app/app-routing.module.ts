@@ -6,7 +6,7 @@ import { SeccionComponent } from './pages/seccion/seccion.component';
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
   { path: 'menu', component: MenuComponent},
-  { path: 'register', component:  SeccionComponent},
+  { path: 'seccion', component:  SeccionComponent},
 ];
 
 @NgModule({

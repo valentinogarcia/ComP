@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  constructor(
+    private router: Router
+  ) {}
+  
+  seccionButton(){
+    this.router.navigate(['/seccion']);
+  }
 }
