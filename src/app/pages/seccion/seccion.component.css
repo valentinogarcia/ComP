@@ -1,0 +1,15 @@
+.body{
+    display: flex;
+}
+
+.contenedortags{
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 30%;
+}
+
+.contenedortitulo{
+    display: flex;
+    gap: 5%;
+    width: 70%;
+}
