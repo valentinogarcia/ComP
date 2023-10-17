@@ -14,4 +14,10 @@ export class NavbarComponent {
   menuButton(){
     this.router.navigate(['/menu']);
   }
+  loginButton(){
+    this.router.navigate(['/login']);
+  }
+  registerButton(){
+    this.router.navigate(['/register']);
+  }
 }
