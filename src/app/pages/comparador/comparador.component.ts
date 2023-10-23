@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-comparador',
   templateUrl: './comparador.component.html',
@@ -7,31 +8,41 @@ import { Router } from '@angular/router';
 })
   
 
-export class ComparadorComponent {
+export class ComparadorComponent implements OnInit {
+
+  leftObject:any ;
+  rightObject:any;
+  allowedObjects:any[]=[];
+  constructor(private route: ActivatedRoute,private router: Router,private api:ApiService) { 
+  }
   
-  public Categorias(): string[]{
-    const obj: object[] = []
+  async ngOnInit(){
+    let tag:any;
+     this.route.params.subscribe(params => {
+      tag = params['tag'];
+      
 
-    obj.push(
+    });
+    await this.api.getElementos().subscribe(async e=>{
+      e.forEach(async(element:any) => {
+        
 
-      { Almacenamiento:"64 Gigabyte",
-      Ram:"4 Gigabytes",
-      Tamano:"pepe"
-    } as object
-    )
-    let entries = Object.entries(obj[0])
-    let mapinha:Map<string,string> = new Map()
-let data = entries.map( ([key, val] ) => {
-  mapinha.set(key,val)
-});
-console.log(mapinha);
-    return  Array.from(mapinha.keys());
-  }
-  public Datos2(){
-    return { Almacenamiento:"64 Niggbyte",
-    Ram:"8 Gigabytes",
-    Tamaño:"mayor"
-  }
-  }
+      await element.tags.split(' ').forEach(async(t:string) => {
+        if(t==tag){
+        this.allowedObjects.push(element)
+        if(!this.leftObject){this.leftObject=element}else{if(!this.rightObject){this.rightObject=element}else{
+          return
+        }} 
+      }
+       console.log(this.leftObject);
+       console.log(this.rightObject);
+       
+       
+      });
 
+      
+      
+    });
+    } )
+  }
 }
