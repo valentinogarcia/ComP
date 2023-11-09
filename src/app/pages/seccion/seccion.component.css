@@ -1,0 +1,16 @@
+#body2{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.contenedortags{
+    margin-left: 6%;
+}
+
+.contenedorseccion{
+    width: 100%;
+}
+.tarjeta{
+    margin-bottom: 2%;
+}

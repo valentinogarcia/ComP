@@ -1,0 +1,33 @@
+<div class="body2">
+    <p style="text-align: center; font-size: xx-large; margin-top: 3%; margin-bottom: 3%;">{{tags[ tags.length-1 ]}}</p>
+    <div class="overflow-x-auto mr-[11%] ml-[11%]">
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <input class="elegirElemento" list="opcionesCompararIzquierda" type="text" (keydown)="ReplaceLeft($event)"
+                [(ngModel)]="leftText" placeholder="Seleccione elemento....">
+            <input class="elegirElemento" list="opcionesCompararIzquierda" type="text"
+                placeholder="Seleccione elemento...." (keydown)="ReplaceRight($event)" [(ngModel)]="rightText">
+            <datalist id="opcionesCompararIzquierda">
+                <select name="objIzquierdo" id="OI" onselect="FindObject()">
+                    <option *ngFor="let x of allowedObjects" value="{{x.nombre}}">{{x.nombre}}</option>
+                </select>
+            </datalist>
+        </div>
+
+        <table style="font-size: larger;" class="table">
+            <thead style="font-size: larger">
+                <tr>
+                    <th style="text-align: start;">{{leftObject.nombre}}</th>
+                    <th style="text-align: center;">Categorias</th>
+                    <th style="text-align: end;">{{rightObject.nombre}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of allowedObjects[0].map">
+                    <td style="text-align: start;">{{leftObject.stats[x]}}</td>
+                    <td style="text-align: center;">{{x}}</td>
+                    <td style="text-align: end;">{{rightObject.stats[x]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

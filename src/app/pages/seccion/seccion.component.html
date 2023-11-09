@@ -1,0 +1,87 @@
+<div id="body2">
+  <div class="contenedortags text-base" style="border-right: black 1px solid; width: 20%">
+    <div class="contenedortitulo">
+      <p class="titulo">Secciones</p>
+    </div>
+
+    <div class="tags w-40 bg-[#e9e7e7]">
+      <div class="collapse collapse-arrow ">
+        <input type="radio" name="my-accordion-2" checked="checked" />
+        <div class="collapse-title font-medium text-base">
+          Deportes
+        </div>
+        <div class="collapse-content ">
+          <div class="collapse collapse-arrow">
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-medium text-base">
+              futbol
+            </div>
+            <div class="collapse-content join join-vertical text-base">
+              <a class="join-item" href="">jugadores</a>
+              <a class="join-item" href="">equipos</a>
+              <a class="join-item" href="">dts</a>
+            </div>
+          </div>
+          <div class="collapse collapse-arrow">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title text-base font-medium">
+              rugby
+            </div>
+            <div class="collapse-content">
+              <p>hello</p>
+            </div>
+          </div>
+          <div class="collapse collapse-arrow">
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-medium text-base">
+              skibidy
+            </div>
+            <div class="collapse-content">
+              <p>bop</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collapse collapse-arrow">
+        <input type="radio" name="my-accordion-2" />
+        <div class="collapse-title font-medium text-base">
+          Tecnología
+        </div>
+        <div class="collapse-content join join-vertical">
+          <div class="collapse collapse-arrow">
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-medium text-base">
+              electrodomesticos
+            </div>
+            <div class="collapse-content join join-vertical">
+              <a class="join-item" href="">heladeras</a>
+              <a class="join-item" href="">mircohondas</a>
+              <a class="join-item" href="">cafeteras</a>
+            </div>
+          </div>
+          <div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="contenedorseccion" style="margin-right: 10%; margin-bottom: 10%; margin-left: 10%;">
+    <input style="border-radius: 20px; padding: 0.75%; width: 100%;" placeholder="Busque una seccion..." type="text" name="" id="input">
+    <div class="subsecciones" style="margin-top: 4%; display: flex; flex-wrap: wrap; justify-content: space-between; ">
+      <div *ngFor="let valor of tagsFinales">
+        <div class="card w-96 h-60 bg-base-100 shadow-xl image-full tarjeta">
+          <figure><img :src={{valor.img}}  alt="Imágen" /></figure>
+          <div class="card-body">
+            <h2 class="card-title">{{valor.nombre}}</h2>
+            <p>{{valor.descripcion}}</p>
+            <div class="card-actions justify-end">
+              <button (click)="comparadorButton(valor)" class="btn btn-primary">Comparar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
