@@ -20,6 +20,7 @@ export class ApiService {
     return this.http.post(this.urlElementos,data )
   }
   public postTag( data:any[] ){
-    return this.http.post(this.urlTags,data )
+    return this.http.post(this.urlTags,data ).subscribe( (x:any)=>{console.log(x);
+    } )
   }
 }

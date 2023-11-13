@@ -15,9 +15,11 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { TagsComponent } from './pages/admin/tags/tags.component';
 import { ElementosComponent } from './pages/admin/elementos/elementos.component';
-
+import { TagsComponent } from './pages/admin/tags/tags.component';
+import { AddComponent } from './pages/admin/tags/add/add.component';
+import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
+import { TagComponentComponent } from './components/tag-component/tag-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,8 +30,11 @@ import { ElementosComponent } from './pages/admin/elementos/elementos.component'
     ComparadorComponent,
     LoginComponent,
     RegisterComponent,
+    ElementosComponent,
     TagsComponent,
-    ElementosComponent
+    AddComponent,
+    ModifyComponent,
+    TagComponentComponent
   ],
   imports: [
     BrowserModule,
