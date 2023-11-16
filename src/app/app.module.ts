@@ -20,6 +20,8 @@ import { TagsComponent } from './pages/admin/tags/tags.component';
 import { AddComponent } from './pages/admin/tags/add/add.component';
 import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
 import { TagComponentComponent } from './components/tag-component/tag-component.component';
+import { SelectComponent } from './pages/admin/tags/select/select.component';
+import { SelectActionComponent } from './pages/admin/tags/select-action/select-action.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { TagComponentComponent } from './components/tag-component/tag-component.
     TagsComponent,
     AddComponent,
     ModifyComponent,
-    TagComponentComponent
+    TagComponentComponent,
+    SelectComponent,
+    SelectActionComponent
   ],
   imports: [
     BrowserModule,

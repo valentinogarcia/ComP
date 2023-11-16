@@ -9,6 +9,8 @@ import { TagsComponent } from './pages/admin/tags/tags.component';
 import { ElementosComponent } from './pages/admin/elementos/elementos.component';
 import { AddComponent } from './pages/admin/tags/add/add.component';
 import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
+import { SelectComponent } from './pages/admin/tags/select/select.component';
+import { SelectActionComponent } from './pages/admin/tags/select-action/select-action.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -19,8 +21,10 @@ const routes: Routes = [
   { path: 'register', component:  RegisterComponent},
   {path:  'admin/tags', component: TagsComponent},
   {path:  'admin/tags/add',component:AddComponent},
-  {path:  'admin/tags/modify',component:ModifyComponent},
-  {path:  'admin/elementos',component:ElementosComponent}
+  {path:  'admin/tags/modify/:tag/:properties',component:ModifyComponent},
+  {path:  'admin/tags/select',component:SelectComponent},
+  {path:  'admin/tags/select/:tagID',component:SelectActionComponent},
+  {path:  'admin/elementos',component:ElementosComponent},
 ];
 
 @NgModule({

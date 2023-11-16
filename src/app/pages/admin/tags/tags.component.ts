@@ -18,9 +18,9 @@ export class TagsComponent {
      this.router.navigate([this.router.url+'/add'])    
   }
   SendToModify(e:MouseEvent){
-    console.log(this.router.url+'/modify');
+    console.log(this.router.url+'/select');
     
     //let r:string = this.router.url;    
-     this.router.navigate([this.router.url+'/modify'])    
+     this.router.navigate([this.router.url+'/select'])    
   }
 }
