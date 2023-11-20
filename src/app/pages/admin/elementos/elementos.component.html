@@ -1,1 +1,62 @@
-<p>elementos works!</p>
+<div id="menu">
+
+    <ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+    <li *ngIf="!edit"><a (click)="edit=true;statAlert=false;tagAlert=false">Editar</a></li>
+    <li *ngIf="edit"><a (click)="edit=false">Agregar</a></li>
+</ul>
+</div>
+<div id="body" class="flex place-content-center flex-row grid grid-rows-1">
+
+<div class="mt-10" style="display: flex; flex-direction: column;" *ngIf="edit">
+    <button *ngFor="let x of allElements"  (click)="editingTag=x"> {{x.nombre}} </button>
+</div>
+<div *ngIf="!edit" class="join join-vertical">
+    <h1 class="join-item"> Agregando</h1>
+    <div>
+        Nombre: <input class="mt-10 join-item" [(ngModel)]="addElemento.nombre">
+    </div>
+    <div class="mb-10">
+        img:<input class="mt-10 join-item" [(ngModel)]="addElemento.img">
+    </div>
+    <h1 class="mt-10 justify"> Tags </h1>
+    <div class="mt-10 mb-8" *ngFor="let x of addElemento.tags">
+        <span class="mt-8 mb-10">{{x}} <button id="delete" class="btn btn-circle" (click)="DeleteTag(x)" >
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+         </button></span>
+   </div>
+
+   <button class="btn btn-info mt-10" (click)=" statAlert=false;tagAlert=true; "> AddTag </button>
+    
+    <h1 class="mt-10 justify"> Stats </h1>
+    <div class="mt-10 mb-8" *ngFor="let x of addElemento.map">
+         <span class="mt-8 mb-10">{{x}}: <input [(ngModel)]=" addElemento.stats[x]" >  <button id="delete" class="btn btn-circle" (click)="DeleteStat(x)" >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button></span>
+    </div>
+    <div>
+        <button class="btn btn-info mt-10" (click)=" statAlert=true;tagAlert=false; "> AddStat </button>
+    </div>
+    
+</div>
+
+</div>
+<div role="alert" class="alert alert-info mt-10 mb-10" *ngIf="statAlert">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span> Nombre del stat <input class="ml-10" placeholder="StatName" [(ngModel)]="addStatName"> </span>
+    <button class="btn btn-success" (click)="AddStat()">Agregar</button>
+  </div>
+  <div role="alert" class="alert alert-info mt-10 mb-10" *ngIf="tagAlert">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span> Nombre del tag <input class="ml-10" placeholder="StatName" [(ngModel)]="addTagName"> </span>
+    <button class="btn btn-success" (click)="AddTag()">Agregar</button>
+  </div>
+  <div class="flex justify-center mt-12 mb-10" *ngIf="!edit">
+    <button class="btn btn-wide btn-success" (click)="Submit()">Guardar</button>
+  </div>
+  <div *ngIf="editingTag" class="mt-10 mb-10" id="EditAlert">
+    <div role="alert" class="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span> Tag seleccionado: {{editingTag.nombre}} </span>
+        <button class="btn btn-success" (click)="Edit()">Editar</button> <button class="btn btn-sm btn-primary w-20 h-12" (click)="ConfirmDelete()">Borrar</button>
+      </div>
+  </div>

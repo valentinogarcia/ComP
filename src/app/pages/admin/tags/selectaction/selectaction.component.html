@@ -1,0 +1,62 @@
+<div role="alert" class="alert" *ngIf="modifyF">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span>Tag seleccionado: {{current.nombre||current}} nombre<input [(ngModel)]="nombre" placeholder="{{current.nombre}}"> img <input [(ngModel)]="img" placeholder="{{current.img}}">
+  </span>
+  <div>
+    <button class="btn btn-sm btn-primary" (click)="removeTag(current.nombre||current)">Borrar</button>
+    <button class="btn btn-sm btn-primary" (click)="modifyTag(img)">Confirmar</button>
+  </div>
+</div>
+
+<div role="alert" class="alert" *ngIf="activated">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Tag seleccionado: {{current.nombre||current}}</span>
+    <div>
+      <button class="btn btn-sm" (click)="removeTag(current.nombre||current)">Borrar</button>
+      <button class="btn btn-sm btn-primary" (click)="SendTag(current.nombre||current)">Editar</button>
+    </div>
+  </div>
+  <div role="alert" class="alert" *ngIf="add">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Agregar Tag a: {{addtoType}}
+        <input [(ngModel)]="nombre" >
+    </span>
+    <div>
+      <button class="btn btn-sm btn-primary" (click)="addTag(nombre)">Add</button>
+    </div>
+  </div>
+<div class="flex flex-direction" *ngIf="tags.length>0">
+    <div> 
+    <div id="Nombre"> 
+        <p> Nombre: </p>
+        <input :placeholder="{{tags[tags.length-1].nombre}}" [(ngModel)]="tagname" (keydown)="changeName($event)" ><button class="button-34" role="button"> x</button>
+    </div>
+    <div id="Finales">
+        Finales
+        <br>
+        ----------------------------------
+        <br>
+        <button class="button-34" role="button" *ngFor="let f of tags[tags.length-1].finales"  (click)="TagClick(f,tags[tags.length-1])">{{f.nombre||f}} </button><button class="button-34" role="button" (click)="AddTagClick(tags[tags.length-1]);addtoType='Finales' ">+</button>    
+        <br>
+        ###############
+        <br>
+        
+    
+    </div>
+    <div id="Subsecciones">
+        Subsecciones
+        <br>
+        ----------------------------------
+        <br>    
+        <button class="button-34" role="button" *ngFor="let s of tags[tags.length-1].subsecciones" (click)="TagClick(s,tags[tags.length-1])">{{s.nombre}}</button><button class="button-34" role="button" (click)="AddTagClick(tags[tags.length-1]);addtoType='Subsecciones' ">+</button>   
+    </div>
+    </div>
+    
+</div>
+<div role="alert" class="alert" *ngIf="tags.length<=0">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>
+        <p> Este tag no existe.</p>
+    </span>
+
+  </div>

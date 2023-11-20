@@ -21,7 +21,8 @@ import { AddComponent } from './pages/admin/tags/add/add.component';
 import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
 import { TagComponentComponent } from './components/tag-component/tag-component.component';
 import { SelectComponent } from './pages/admin/tags/select/select.component';
-import { SelectActionComponent } from './pages/admin/tags/select-action/select-action.component';
+import { SelectActionComponent } from './pages/admin/tags/selectaction/selectaction.component';
+import { EditComponent } from './pages/admin/elementos/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { SelectActionComponent } from './pages/admin/tags/select-action/select-a
     ModifyComponent,
     TagComponentComponent,
     SelectComponent,
-    SelectActionComponent
+    SelectActionComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
