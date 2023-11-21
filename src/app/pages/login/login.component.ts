@@ -16,12 +16,21 @@ export class LoginComponent {
       contraseña: new FormControl() 
     })
   }
+
   onSubmit(){
     this.userService.login(this.formLogin.value)
       .then(response => {
         console.log(response)
-        this.router.navigate(['/seccion'])
+        // Obtén el usuario actual después de iniciar sesión
+        const user = this.userService.getCurrentUser();
+        if (user && user.email) { // Comprueba si user y user.email no son nulos
+          console.log('Correo electrónico del usuario en login.ts:', user.email);
+          // Puedes almacenar el correo electrónico en el servicio o donde sea necesario
+          this.userService.setUserEmail(user.email);
+        }
+
+        this.router.navigate(['/menu']);
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 }

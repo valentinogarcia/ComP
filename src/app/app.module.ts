@@ -14,7 +14,15 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { ElementosComponent } from './pages/admin/elementos/elementos.component';
+import { TagsComponent } from './pages/admin/tags/tags.component';
+import { AddComponent } from './pages/admin/tags/add/add.component';
+import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
+import { TagComponentComponent } from './components/tag-component/tag-component.component';
+import { SelectComponent } from './pages/admin/tags/select/select.component';
+import { SelectActionComponent } from './pages/admin/tags/selectaction/selectaction.component';
+import { EditComponent } from './pages/admin/elementos/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,13 +32,22 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     ComparadorComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ElementosComponent,
+    TagsComponent,
+    AddComponent,
+    ModifyComponent,
+    TagComponentComponent,
+    SelectComponent,
+    SelectActionComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
   ],
