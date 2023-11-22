@@ -24,4 +24,7 @@ export class RegisterComponent {
       })
       .catch(error => console.log(error))
   }
+  loginLink(){
+    this.router.navigate(['/login']);
+  }
 }

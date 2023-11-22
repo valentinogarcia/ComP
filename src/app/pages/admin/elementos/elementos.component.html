@@ -12,11 +12,18 @@
 </div>
 <div *ngIf="!edit" class="join join-vertical">
     <h1 class="join-item"> Agregando</h1>
-    <div>
+    <div class="mb-6">
         Nombre: <input class="mt-10 join-item" [(ngModel)]="addElemento.nombre">
     </div>
-    <div class="mb-10">
-        img:<input class="mt-10 join-item" [(ngModel)]="addElemento.img">
+    <div class="mb-6">
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">Selecciona Imagen</span>
+        </label>
+        <input type="file" class="file-input file-input-bordered w-full max-w-xs" />
+        <label class="label">
+        </label>
+      </div>
     </div>
     <h1 class="mt-10 justify"> Tags </h1>
     <div class="mt-10 mb-8" *ngFor="let x of addElemento.tags">

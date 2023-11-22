@@ -33,4 +33,8 @@ export class LoginComponent {
       })
       .catch(error => console.log(error));
   }
+
+  registerLink(){
+    this.router.navigate(['/register']);
+  }
 }

@@ -1,11 +1,11 @@
 <div>
-    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="contenedor" style="display: flex; flex-direction: column; margin: auto; width: 20vw; height: 35vh; box-shadow: #14B8A6 0px 2px 8px 0px; background-color:whitesmoke; margin-top: 10%; margin-bottom: 15%;">
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="contenedor" style="display: flex; flex-direction: column; margin: auto; width: 300px; height: 260px; box-shadow: #14B8A6 0px 2px 8px 0px; background-color:whitesmoke; margin-top: 175px; margin-bottom: 250px;">
         <p style="margin: 7%; font-size: large; font-weight: bold; ">Login</p>
         <div class="inputs" style="margin-left: 7%;margin-right: 7%;">
             <input type="text" name="" placeholder="Escriba su e-mail..." class="inplogin" formControlName="email" style="margin-bottom: 3%;">
-            <input type="password" name="" placeholder="Escriba su contraseña..." class="inplogin" formControlName="contraseña">            
+            <input type="password" name="" placeholder="Escriba su contraseña..." class="inplogin" formControlName="contraseña">         
         </div>
-        
-        <button type="submit" style="width: 30%; margin: auto;" class="button-17" role="button">Log-in</button>
+        <a href="" (click)="registerLink()" style="margin: auto; color: #3366CC;"> ¿No tienes cuenta? ¡Registrate aqui! </a>
+        <button type="submit" style="width: 30%; margin: auto;" class="button-17" role="button">Enter</button>
     </form>
 </div>
