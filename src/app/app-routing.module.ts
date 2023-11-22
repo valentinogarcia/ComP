@@ -13,6 +13,7 @@ import { SelectComponent } from './pages/admin/tags/select/select.component';
 import { SelectActionComponent } from './pages/admin/tags/selectaction/selectaction.component';
 import { EditComponent } from './pages/admin/elementos/edit/edit.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:  'admin/tags/select',component:SelectComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path:  'admin/tags/select/:tagID',component:SelectActionComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path:  'admin/elementos',component:ElementosComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
-  {path:  'admin/elementos/edit/:id',component:EditComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))}
+  {path:  'admin/elementos/edit/:id',component:EditComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin',component:AdminComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({

@@ -36,4 +36,7 @@ export class TagsComponent {
     //let r:string = this.router.url;    
      this.router.navigate([this.router.url+'/select'])    
   }
+  back(){
+    this.router.navigate(["/admin"])
+  }
 }
