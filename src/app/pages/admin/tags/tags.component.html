@@ -1,9 +1,22 @@
 <body>
-    <div id="buttons">
-        <ul class="menu content-central bg-base-200 w-56 rounded-box">
-            <li class="menu-title"> Opciones </li>
-            <li><a id="add" (click)="SendToAdd($event)" > Agregar Tag </a></li>
-            <li><a id="modify" (click)="SendToModify($event)">Modificar Tag</a></li>
-          </ul>
+    <div id="loading" *ngIf="isAdmin==null">
+        <h1>
+          Autentificando
+        </h1>
+      </div>
+      <div id="loading" *ngIf="isAdmin==false">
+        <h1>
+          Debe ser admin para ingresar a esta sección
+        </h1>
+      </div>
+    <div *ngIf="isAdmin">
+        
+        <div id="buttons">
+            <ul class="menu content-central bg-base-200 w-56 rounded-box">
+                <li class="menu-title"> Opciones </li>
+                <li><a id="add" (click)="SendToAdd($event)" > Agregar Tag </a></li>
+                <li><a id="modify" (click)="SendToModify($event)">Modificar Tag</a></li>
+            </ul>
+        </div>
     </div>
 </body>

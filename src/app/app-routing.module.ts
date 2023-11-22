@@ -12,6 +12,7 @@ import { ModifyComponent } from './pages/admin/tags/modify/modify.component';
 import { SelectComponent } from './pages/admin/tags/select/select.component';
 import { SelectActionComponent } from './pages/admin/tags/selectaction/selectaction.component';
 import { EditComponent } from './pages/admin/elementos/edit/edit.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -20,13 +21,13 @@ const routes: Routes = [
   { path: 'comparador/:tags', component:  ComparadorComponent},
   { path: 'login', component:  LoginComponent},
   { path: 'register', component:  RegisterComponent},
-  {path:  'admin/tags', component: TagsComponent},
-  {path:  'admin/tags/add',component:AddComponent},
-  {path:  'admin/tags/modify/:tag/:properties',component:ModifyComponent},
-  {path:  'admin/tags/select',component:SelectComponent},
-  {path:  'admin/tags/select/:tagID',component:SelectActionComponent},
-  {path:  'admin/elementos',component:ElementosComponent},
-  {path:  'admin/elementos/edit/:id',component:EditComponent}
+  {path:  'admin/tags', component: TagsComponent,...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
+  {path:  'admin/tags/add',component:AddComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/tags/modify/:tag/:properties',component:ModifyComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/tags/select',component:SelectComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/tags/select/:tagID',component:SelectActionComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/elementos',component:ElementosComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/elementos/edit/:id',component:EditComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({

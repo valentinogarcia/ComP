@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-elementos',
@@ -8,7 +9,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./elementos.component.css']
 })
 export class ElementosComponent {
-  allElements:any[]=[]
+  isAdmin:boolean|null=null;
+  allElements:any[]=[];
   edit:boolean=false;
   statAlert:boolean=false;
   tagAlert:boolean=false;
@@ -21,9 +23,17 @@ export class ElementosComponent {
 
   constructor(
     private api:ApiService,
-    private router: Router
+    private router: Router,
+    private usr:UserService
   ){}
-  ngOnInit(){
+  async ngOnInit(){
+    console.log(this.usr.getCurrentUser()?.email);
+     this.api.getAdmins().subscribe(  x=>{ x.forEach( (x:any)=>{
+      
+       if(x.mail==this.usr.getCurrentUser()?.email){this.isAdmin= true;} 
+      } )}).add(()=>{if(this.isAdmin){console.log("SOS ADMIN DOUUUU");
+      }else{ this.isAdmin=false; } 
+    })
     this.addStats={}
     this.addElemento={"nombre":"","img":"","tags":[],"stats":{}}
     this.api.getElementos().forEach( x=> x.forEach( (element:any)=> this.allElements.push(element) ) )

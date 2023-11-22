@@ -13,7 +13,7 @@
             </datalist>
         </div>
 
-        <table style="font-size: larger;" class="table">
+        <table style="font-size: larger;" class="table" *ngIf="leftObject && rightObject">
             <thead style="font-size: larger">
                 <tr>
                     <th style="text-align: start;">{{leftObject.nombre}}</th>

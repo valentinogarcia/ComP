@@ -1,11 +1,11 @@
 <div>
-    <form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="contenedor" style="display: flex; flex-direction: column; margin: auto; width: 20vw; height: 35vh; box-shadow: #14B8A6 0px 2px 8px 0px; background-color:whitesmoke; margin-top: 10%; margin-bottom: 15%;">
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()" class="contenedor" style="display: flex; flex-direction: column; margin: auto; width: 300px; height: 260px; box-shadow: #14B8A6 0px 2px 8px 0px; background-color:whitesmoke; margin-top: 175px; margin-bottom: 250px;">
         <p style="margin: 7%; font-size: large; font-weight: bold; ">Register</p>
         <div class="inputs" style="margin-left: 7%;margin-right: 7%;">
             <input formControlName="email" type="text" name="" placeholder="Escriba su e-mail..." class="inplogin">
             <input formControlName="contraseña" type="password" name="" placeholder="Escriba su contraseña..." class="inplogin">        
-            <input type="password" name="" placeholder="Reescriba su contraseña..." class="inplogin">
         </div>
+        <a href="" (click)="loginLink()" style="margin: auto; color: #3366CC;"> ¿Ya tienes cuenta? ¡Inicia sesion aqui! </a>
         <button type="submit" style="width: 30%; margin: auto;" class="button-17" role="button">Enter</button>
     </form>
 </div>

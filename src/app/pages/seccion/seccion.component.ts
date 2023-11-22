@@ -10,6 +10,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class SeccionComponent {
   data:any[]=[];
   tagsFinales:any[]=[];
+  showTags:any[]=[]
+  writeTag:string=""
+  searchingTags:string[]=[]
 
   constructor(
     private router: Router,private api:ApiService
@@ -25,7 +28,7 @@ export class SeccionComponent {
         x.t=[element.nombre];
         await this.GetFinales(x)
       });
-    }); console.log(this.tagsFinales[0]);
+    }); console.log(this.tagsFinales[0]);this.showTags=this.tagsFinales
     ;
   }) );
    }
@@ -64,6 +67,32 @@ export class SeccionComponent {
       });
       route+='&'+element.nombre;
     this.router.navigate([route]);
+  }
+  addTag(e:KeyboardEvent){
+    if(e.key!="Enter"){return}
+    if(!this.writeTag){ return    }
+    if (this.searchingTags.includes(this.writeTag)){ return }
+    this.searchingTags.push(this.writeTag);
+    this.writeTag="";
+    console.log(this.searchingTags);
+    this.onTagUpdate()
+    
+  }
+  onTagUpdate(){
+    this.showTags=[]
+    this.tagsFinales.forEach( x=>{
+      let iterations=0
+      x.t.forEach((s:string) => {
+        if(this.searchingTags.find( st=>st.toLowerCase()==s.toLocaleLowerCase() )){iterations+=1}        
+      });
+      if(this.searchingTags.find( st=>st.toLowerCase()==x.nombre.toLocaleLowerCase() )){iterations+=1}
+      if(iterations==this.searchingTags.length){ this.showTags.push(x) }
+      
+    } )
+  }
+  deleteTag(x:string){
+    this.searchingTags.splice(this.searchingTags.findIndex((b)=>b==x))
+    this.onTagUpdate()
   }
 
 }

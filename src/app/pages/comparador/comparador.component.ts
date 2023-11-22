@@ -67,12 +67,14 @@ export class ComparadorComponent implements OnInit {
      await  e.forEach(async(element:any) => {
         
       let correctTags:number=0
-      await element.tags.split(' ').forEach(async(t:string) => {
+      await element.tags.forEach(async(t:string) => {
         if(this.tags.includes(t)){
           correctTags+=1
-        }
+        }else{ this.tags.forEach( x=>{ if(t.toLowerCase()==x.toLowerCase()){correctTags+=1};} ) }
       });
+      console.log(correctTags);
       if(correctTags==this.tags.length){
+        
           this.allowedObjects.push(element)
           console.log(this.allowedObjects);
           if(!this.leftObject){this.leftObject=element;this.leftObject.map=Object.keys(this.leftObject.stats)}else{if(!this.rightObject){this.rightObject=element}else{

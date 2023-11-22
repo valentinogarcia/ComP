@@ -23,6 +23,7 @@ import { TagComponentComponent } from './components/tag-component/tag-component.
 import { SelectComponent } from './pages/admin/tags/select/select.component';
 import { SelectActionComponent } from './pages/admin/tags/selectaction/selectaction.component';
 import { EditComponent } from './pages/admin/elementos/edit/edit.component';
+import { TagDisplayComponent } from './components/tag-display/tag-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { EditComponent } from './pages/admin/elementos/edit/edit.component';
     TagComponentComponent,
     SelectComponent,
     SelectActionComponent,
-    EditComponent
+    EditComponent,
+    TagDisplayComponent
   ],
   imports: [
     BrowserModule,

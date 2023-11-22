@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-select-action',
@@ -8,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./selectaction.component.css']
 })
 export class SelectActionComponent {
+  isAdmin:boolean|null=null
   tags:any[]=[]
   current:any;
   activated:boolean=false;
@@ -19,13 +21,21 @@ export class SelectActionComponent {
   tag:any;
   img:string="";
   modifyF:boolean=false;
+  uploadIMG:any;
+  imgurl:any
   constructor(
     private api:ApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private usr:UserService
   ){}
   async ngOnInit(){
-    
+    this.api.getAdmins().subscribe(  x=>{ x.forEach( (x:any)=>{
+      
+      if(x.mail==this.usr.getCurrentUser()?.email){this.isAdmin= true;} 
+     } )}).add(()=>{if(this.isAdmin){console.log("SOS ADMIN DOUUUU");
+     }else{ this.isAdmin=false; } 
+   })
     let allTags:any[] = []
     let paramTags:any[]=[]
     await this.api.getTags().subscribe(
@@ -249,5 +259,15 @@ export class SelectActionComponent {
       //window.location.reload();
     }
 
+  }
+  uploadImage(e:any){
+    console.log(typeof(e))
+    let file = e.target.files[0];
+    const form:FormData=new FormData();
+    form.append('image',file)
+//    let x:any = {"image":this.uploadIMG}
+    this.api.uploadImage( form  ).subscribe((y:any)=>{if(y){ console.log(y);
+    this.img=y.imageURL }})
+    
   }
 }
