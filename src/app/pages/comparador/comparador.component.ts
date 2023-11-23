@@ -45,6 +45,9 @@ export class ComparadorComponent implements OnInit {
       this.FindObject(this.leftText,false);
      }
   }
+  back(){
+    this.router.navigate(['seccion'])
+  }
   async ngOnInit(){
     
     let tag:any;

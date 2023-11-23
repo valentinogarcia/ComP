@@ -39,6 +39,9 @@ export class ApiService {
     
     return this.http.delete(this.urlElementos+'/'+_id )
   }
+  public deleteTag(_id:string){
+    return this.http.delete(this.urlTags+'/'+_id )
+  }
   public postTag( data:any[] ){
     return this.http.post(this.urlTags,data ).subscribe( (x:any)=>{console.log(x);
     } )

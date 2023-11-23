@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./select.component.css']
 })
 export class SelectComponent {
+  editingTag:any;
   isAdmin:boolean|null=null;
   datos:any[]=[]
   constructor(
@@ -38,5 +39,17 @@ export class SelectComponent {
   async OnClick(e:any){
     console.log(e.nombre);
     this.router.navigate([this.router.url+'/&'+e.nombre])
+  }
+  back(){
+    this.router.navigate(["admin/tags"])
+  }
+  ConfirmDelete(){
+    console.log(this.editingTag);
+    
+    if ( confirm("Esta seguro de querer borrar el elemento: "+this.editingTag.nombre) ){
+      this.api.deleteTag(this.editingTag._id).subscribe(x=>console.log(x)).add( ()=>{
+        window.location.reload()
+      } )
+    }
   }
 }

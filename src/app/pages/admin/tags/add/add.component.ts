@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,25 +9,33 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent {
-  currentTag:any={"nombre":"","finales":[],"subdivisiones":[]};
+  currentTag:any={"nombre":"","finales":[],"subsecciones":[]};
   /*
       this.currentTag.nombre=""
     this.currentTag.finales=[]
-    this.currentTag.subdivisiones=[{"nombre":"pepe","finales":[],"subdivisiones":[]}]
+    this.currentTag.subsecciones=[{"nombre":"pepe","finales":[],"subsecciones":[]}]
   */
+ 
   isAdmin:boolean|null=null
   subdivision:string="";
   nombre:string="";
-  subdivisiones:string[]=[];
+  subsecciones:string[]=[];
   final:string="";
   finales:string[]=[];
   constructor(
     private api:ApiService,
-    private usr:UserService
+    private usr:UserService,
+    private router:Router
   ){}
   AddSubdivision(){
     console.log(this.subdivision);
-    this.currentTag.subdivisiones.push({"nombre":this.subdivision,"subdivisiones":[],"finales":[]})
+    this.currentTag.subsecciones.push({"nombre":this.subdivision,"subsecciones":[],"finales":[]})
+  }
+  DeleteSubdivision(del:string){
+    this.currentTag.subsecciones.splice( this.currentTag.subsecciones.findIndex( (x:any)=>x.nombre==del ),1 )
+  }
+  DeleteFinal(del:string){
+    this.currentTag.finales.splice( this.currentTag.finales.findIndex( (x:any)=>x.nombre==del ),1 )
   }
   AddFinal(){
     console.log(this.final);
@@ -42,8 +51,11 @@ export class AddComponent {
   Submit(){
     this.currentTag.nombre=this.nombre;
     console.log(this.currentTag);
-    this.api.postTag(this.currentTag);
+    console.log(this.api.postTag(this.currentTag));
+    this.router.navigate(['/admin/tags/select/'+this.currentTag.nombre])
     
   }
-  
+  back(){
+    this.router.navigate(["admin/tags"])
+  }
 }

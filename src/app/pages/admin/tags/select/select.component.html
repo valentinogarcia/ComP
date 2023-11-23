@@ -9,7 +9,18 @@
     </h1>
   </div>
 <div *ngIf="isAdmin">
+  <button class="btn btn-circle ml-2" (click)="back()">
+    <  
+    </button>   
 <div class="" style="display: flex; flex-direction: column;">
-    <button *ngFor="let x of datos" (click)="OnClick(x)" > {{x.nombre}} </button>
+    <button *ngFor="let x of datos" (click)="editingTag=x" > {{x.nombre}} </button>
 </div>
+<div *ngIf="editingTag" class="mt-10 mb-10" id="EditAlert">
+  
+  <div role="alert" class="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span> Elemento seleccionado: {{editingTag.nombre}} </span>
+        <button class="btn btn-success" (click)="OnClick(editingTag)">Editar</button> <button class="btn btn-sm btn-primary w-20 h-12" (click)="ConfirmDelete()">Borrar</button>
+      </div>
+    </div>
 </div>

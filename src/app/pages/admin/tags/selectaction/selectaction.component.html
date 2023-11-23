@@ -1,4 +1,7 @@
 
+<button class="btn btn-circle ml-2" (click)="back()">
+  <  
+  </button>   
 <div id="loading" *ngIf="isAdmin==null">
   <h1>
     Autentificando
@@ -9,17 +12,17 @@
     Debe ser admin para ingresar a esta sección
   </h1>
 </div>
-<div *ngIf="isAdmin">
+<div *ngIf="isAdmin" class="flex place-content-center flex-row grid grid-rows-1 mb-10 mt-10">
 
   <div role="alert" class="alert" *ngIf="modifyF">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-    <span>Tag seleccionado: {{current.nombre||current}} nombre<input [(ngModel)]="nombre" placeholder="{{current.nombre}}"> img <input [(ngModel)]="img" placeholder="{{current.img}}">
-      <input type="file" class="ml-10 file-input w-full max-w-xs" (change)="uploadImage($event)" />
+    <span>Tag seleccionado: {{current.nombre||current}} nombre<input [(ngModel)]="nombre" placeholder="{{current.nombre}}"> img 
+      <input type="file" class="ml-10 file-input w-full max-w-xs"  (change)="uploadImage($event)" />
       
     </span>
     <div>
     <button class="btn btn-sm btn-primary" (click)="removeTag(current.nombre||current)">Borrar</button>
-    <button class="btn btn-sm btn-primary" (click)="modifyTag(img)">Confirmar</button>
+    <button class="btn btn-sm btn-primary" (click)="modifyTag(img);modifyF=false">Confirmar</button>
   </div>
 </div>
 
@@ -27,8 +30,8 @@
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
   <span>Tag seleccionado: {{current.nombre||current}}</span>
   <div>
-    <button class="btn btn-sm" (click)="removeTag(current.nombre||current)">Borrar</button>
-    <button class="btn btn-sm btn-primary" (click)="SendTag(current.nombre||current)">Editar</button>
+    <button class="btn btn-sm" (click)="SendTag(current.nombre||current)">Editar</button>
+    <button class="btn btn-sm btn-primary" (click)="removeTag(current.nombre||current)">Borrar</button>
   </div>
 </div>
 <div role="alert" class="alert" *ngIf="add">

@@ -90,6 +90,23 @@ export class SelectActionComponent {
       }
     )
   }
+  back(){
+    let dir = this.router.url.split('&') 
+    if (dir&&dir.length>1){
+      dir.splice( dir.length-1,1 )
+      console.log(dir);
+      let newDir:string=""
+      dir.forEach( x=>{if(newDir){newDir+="&"+x}else{newDir=x}} )
+      console.log( newDir);
+      
+      //this.router.navigate([newDir])
+      window.location.assign(newDir)
+      return
+    }
+    this.router.navigate(['admin/tags/select'])
+    
+    
+  }
   RecursiveTag(at:any,params:any[],i:number,list:any[]=[]){
     list.push(at)
     console.log(list);
@@ -262,6 +279,7 @@ export class SelectActionComponent {
   }
   uploadImage(e:any){
     console.log(typeof(e))
+    if(!e){return}
     let file = e.target.files[0];
     const form:FormData=new FormData();
     form.append('image',file)

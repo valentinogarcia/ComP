@@ -11,7 +11,9 @@
 
 <div *ngIf="isAdmin">
     
-    <button (click)="back()"> atrás </button>
+    <button class="btn btn-circle ml-2" (click)="back()">
+        <  
+        </button>   
     
     <div class="jflex place-content-center flex-row grid grid-rows-1 mb-10 mt-10" *ngIf="elemento">
         <div class="join-item"> Nombre: <input [(ngModel)]="elemento.nombre"> </div>

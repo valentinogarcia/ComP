@@ -93,7 +93,6 @@ export class ElementosComponent {
      window.location.reload()
   }
   ConfirmDelete(){
-    this.api.deleteElemento(this.editingTag._id)
     console.log(this.editingTag);
     
     if ( confirm("Esta seguro de querer borrar el elemento: "+this.editingTag.nombre) ){
@@ -104,6 +103,9 @@ export class ElementosComponent {
   }
   Edit(){
     window.location.assign(this.router.url+'/edit/'+this.editingTag._id)
+  }
+  back(){
+    this.router.navigate(['admin'])
   }
 
 }

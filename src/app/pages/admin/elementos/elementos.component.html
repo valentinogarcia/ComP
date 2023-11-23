@@ -10,8 +10,10 @@
 </div>
 <div *ngIf="isAdmin">
   
+  <button class="btn btn-circle ml-2 mb-10" (click)="back()">
+    <  
+    </button>   
   <div id="menu">
-    
     <ul class="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
       <li *ngIf="!edit"><a (click)="edit=true;statAlert=false;tagAlert=false">Editar</a></li>
       <li *ngIf="edit"><a (click)="edit=false">Agregar</a></li>
@@ -68,7 +70,7 @@
 <div *ngIf="editingTag" class="mt-10 mb-10" id="EditAlert">
   <div role="alert" class="alert">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span> Tag seleccionado: {{editingTag.nombre}} </span>
+        <span> Elemento seleccionado: {{editingTag.nombre}} </span>
         <button class="btn btn-success" (click)="Edit()">Editar</button> <button class="btn btn-sm btn-primary w-20 h-12" (click)="ConfirmDelete()">Borrar</button>
       </div>
     </div>

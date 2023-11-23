@@ -1,4 +1,7 @@
 <body>
+    <button class="btn btn-circle ml-2" (click)="back()">
+        <  
+        </button>   
     <div id="loading" *ngIf="isAdmin==null">
         <h1>
           Autentificando
@@ -13,13 +16,6 @@
         <div id="body" class="flex place-content-center flex-row grid grid-rows-1 mb-10 mt-10">
             <h1> Nombre </h1>
             <input [(ngModel)]="nombre">
-            <h1>subdivisiones</h1>
-            <div class="flex items-center">
-                <input type="text" placeholder="Type here" [(ngModel)]="subdivision" class="input input-bordered input-secondary w-full max-w-xs" />
-                <button class="btn btn-circle ml-2" (click)="AddSubdivision()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12H20M12 4V20" /></svg>
-                </button>    
-            </div>
             <h1>Finales</h1>
             <div class="flex items-center">
                 <input type="text" placeholder="Type here" [(ngModel)]="final" class="input input-bordered input-secondary w-full max-w-xs" />
@@ -27,6 +23,19 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12H20M12 4V20" /></svg>
                 </button>    
             </div>
+            <div class="mt-10 mb-10" *ngFor="let x of currentTag.finales">
+                <button class="button-34" (click)="DeleteFinal(x.nombre)"> {{x.nombre}} </button>
+            </div>    
+            <h1>subsecciones</h1>
+            <div class="flex items-center">
+                <input type="text" placeholder="Type here" [(ngModel)]="subdivision" class="input input-bordered input-secondary w-full max-w-xs" />
+                <button class="btn btn-circle ml-2 mb-10" (click)="AddSubdivision()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12H20M12 4V20" /></svg>
+                </button>
+            </div>
+            <div class="mt-10 mb-10" *ngFor="let x of currentTag.subsecciones">
+                <button class="button-34" (click)="DeleteSubdivision(x.nombre)"> {{x.nombre}} </button>
+            </div>    
             <!--
             
             <h1>finales</h1>
@@ -37,7 +46,8 @@
                 </button>    
             </div>
         -->
-        <button type="submit" value="Submit" class="btn" (click)="Submit()" > Guardar </button>
+        
+        <button type="submit" value="Submit" class="btn mt-10" (click)="Submit()" > Guardar </button>
     </div>
     </div>
 </body>

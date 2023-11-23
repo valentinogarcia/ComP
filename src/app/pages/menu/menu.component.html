@@ -1,6 +1,7 @@
 <div>
     <div class="fondoImagen">
-        <button (click)="seccionButton()" class="button-28 " role="button">Entrar</button>
+        <button (click)="seccionButton()" class="button-28 " role="button">MainPage</button>
+        <button (click)="adminPanel()" class="button-28 " role="button" *ngIf="isAdmin">AdminPanel</button>
     </div>
 </div>
 
