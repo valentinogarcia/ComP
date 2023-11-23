@@ -4,7 +4,6 @@
     height: 50vh;  
     filter:brightness(35%);
     background-image: url("/assets/fotomenuu.avif");
-    z-index: -1;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -13,7 +12,6 @@
 
 .button-28 {
     filter: saturate(1000%);
-    z-index: 2;
     appearance: none;
     background-color: transparent;
     letter-spacing: 2px;
