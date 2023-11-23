@@ -50,9 +50,12 @@ export class ComparadorComponent implements OnInit {
   }
   async ngOnInit(){
     
-    let tag:any;
+    let tag:string;
      this.route.params.subscribe(params => {
       tag = params['tags'];
+      tag.replace('%20',' ')
+      console.log(tag);
+      
       this.tags=tag.split('&')
       this.tags.forEach( (x)=>{
         if(x==""){
@@ -71,13 +74,16 @@ export class ComparadorComponent implements OnInit {
         
       let correctTags:number=0
       await element.tags.forEach(async(t:string) => {
+        console.log(t);
+        
         if(this.tags.includes(t)){
           correctTags+=1
         }else{ this.tags.forEach( x=>{ if(t.toLowerCase()==x.toLowerCase()){correctTags+=1};} ) }
       });
-      console.log(correctTags);
+      console.log(correctTags+' vs '+this.tags.length);
       if(correctTags==this.tags.length){
-        
+          console.log(element);
+          
           this.allowedObjects.push(element)
           console.log(this.allowedObjects);
           if(!this.leftObject){this.leftObject=element;this.leftObject.map=Object.keys(this.leftObject.stats)}else{if(!this.rightObject){this.rightObject=element}else{

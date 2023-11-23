@@ -24,10 +24,13 @@ export class SeccionComponent {
     })
     
     this.data.forEach(async(element: any) => {
-      element.subsecciones.forEach(async (x:any) => {
-        x.t=[element.nombre];
-        await this.GetFinales(x)
-      });
+      console.log(element);
+      element.t=[]
+      await this.GetFinales(element);
+    //  element.subsecciones.forEach(async (x:any) => {
+     //   x.t=[element.nombre];
+      //  await this.GetFinales(x)
+      //});
     }); console.log(this.tagsFinales[0]);this.showTags=this.tagsFinales
     ;
   }) );
