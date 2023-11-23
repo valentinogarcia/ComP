@@ -1,9 +1,17 @@
-
-<div id="backgroundemybro">
-    <img style="width: 100%; filter:brightness(25%);" src="/assets/fotomenuu.avif" alt="Imagen"/>
-    <button class="btn bEnImg" (click)="seccionButton()" >Button</button>
-    <p class="pEnImg"> No sabes cual celular comprarte? No sabes cual es mejor? Aqui Comp te resuelve todas tus dudas! Dandote la chance de comparar ambos elementos hasta al minimo detalle! Busca y elige entre secciones lo que quieres comparar, luego selecciona dos elementos de la seccion ya elegida y ve sus diferencias, registrate para tener una capacidad ilimitada de caracteristicas.</p>
-</div> 
 <div>
-
+    <div class="fondoImagen">
+        <button (click)="seccionButton()" class="button-28 " role="button">MainPage</button>
+        <button (click)="adminPanel()" class="button-28 " role="button" *ngIf="isAdmin">AdminPanel</button>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+<!--
+<p class="pEnImg"> No sabes cual celular comprarte? No sabes cual es mejor? Aqui Comp te resuelve todas tus dudas! Dandote la chance de comparar ambos elementos hasta al minimo detalle! Busca y elige entre secciones lo que quieres comparar, luego selecciona dos elementos de la seccion ya elegida y ve sus diferencias, registrate para tener una capacidad ilimitada de caracteristicas.</p>
+-->

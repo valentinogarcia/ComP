@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+
 @Component({
   selector: 'app-comparador',
   templateUrl: './comparador.component.html',
@@ -7,31 +9,98 @@ import { Router } from '@angular/router';
 })
   
 
-export class ComparadorComponent {
+
+export class ComparadorComponent implements OnInit {
+
+  leftObject:any ;
+  rightObject:any;
+  allowedObjects:any[]=[];
+  tags:any[]=[];
+  rightText:string="";
+  leftText:string="";
+  constructor(private route: ActivatedRoute,private router: Router,private api:ApiService) { 
   
-  public Categorias(): string[]{
-    const obj: object[] = []
-
-    obj.push(
-
-      { Almacenamiento:"64 Gigabyte",
-      Ram:"4 Gigabytes",
-      Tamano:"pepe"
-    } as object
-    )
-    let entries = Object.entries(obj[0])
-    let mapinha:Map<string,string> = new Map()
-let data = entries.map( ([key, val] ) => {
-  mapinha.set(key,val)
-});
-console.log(mapinha);
-    return  Array.from(mapinha.keys());
+  } 
+  async ValidateElement(){
   }
-  public Datos2(){
-    return { Almacenamiento:"64 Niggbyte",
-    Ram:"8 Gigabytes",
-    Tamaño:"mayor"
+  async FindObject(name:any ,right:boolean){
+    console.log("esta pasando");
+    
+    this.allowedObjects.forEach(element => {
+      if(element.nombre==name){
+        if(right){ this.rightObject=element}else{this.leftObject=element}
+      }
+    });
+    
   }
+  ReplaceRight(e:KeyboardEvent){
+    if(e.key==="Enter"){ 
+      console.log(this.rightText);
+      this.FindObject(this.rightText,true);
+     }
   }
+  ReplaceLeft(e:KeyboardEvent){
+    if(e.key==="Enter"){ 
+      console.log(this.leftText);
+      this.FindObject(this.leftText,false);
+     }
+  }
+  back(){
+    this.router.navigate(['seccion'])
+  }
+  async ngOnInit(){
+    
+    let tag:string;
+     this.route.params.subscribe(params => {
+      tag = params['tags'];
+      tag.replace('%20',' ')
+      console.log(tag);
+      
+      this.tags=tag.split('&')
+      this.tags.forEach( (x)=>{
+        if(x==""){
+          this.tags.splice(this.tags.indexOf(x),1);
+        }
+      } )
+      console.log(this.tags);
+      
+      
 
+    });
+    await this.api.getElementos().subscribe(async e=>{
+      console.log(e);
+      
+     await  e.forEach(async(element:any) => {
+        
+      let correctTags:number=0
+      await element.tags.forEach(async(t:string) => {
+        console.log(t);
+        
+        if(this.tags.includes(t)){
+          correctTags+=1
+        }else{ this.tags.forEach( x=>{ if(t.toLowerCase()==x.toLowerCase()){correctTags+=1};} ) }
+      });
+      console.log(correctTags+' vs '+this.tags.length);
+      if(correctTags==this.tags.length){
+          console.log(element);
+          
+          this.allowedObjects.push(element)
+          console.log(this.allowedObjects);
+          if(!this.leftObject){this.leftObject=element;this.leftObject.map=Object.keys(this.leftObject.stats)}else{if(!this.rightObject){this.rightObject=element}else{
+            return
+          }} 
+        
+  
+      }
+      
+      
+    });
+    } )
+  }
 }
+
+
+
+/* 
+
+*/
