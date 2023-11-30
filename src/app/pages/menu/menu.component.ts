@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { UserService } from 'src/app/services/user.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -23,6 +23,8 @@ export class MenuComponent {
     this.router.navigate(['/admin'])
   }
   ngOnInit(){
+    console.log(environment);
+    
     this.usr.userEmail$.subscribe((email) => {
       console.log("email en navbar", email);
       

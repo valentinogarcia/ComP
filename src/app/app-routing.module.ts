@@ -14,6 +14,7 @@ import { SelectActionComponent } from './pages/admin/tags/selectaction/selectact
 import { EditComponent } from './pages/admin/elementos/edit/edit.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { AdminComponent } from './pages/admin/admin.component';
+import { ManageadminsComponent } from './pages/admin/manageadmins/manageadmins.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -29,7 +30,9 @@ const routes: Routes = [
   {path:  'admin/tags/select/:tagID',component:SelectActionComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path:  'admin/elementos',component:ElementosComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path:  'admin/elementos/edit/:id',component:EditComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
-  {path:  'admin',component:AdminComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))}
+  {path:  'admin',component:AdminComponent,...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path:  'admin/manage/admins',...canActivate(()=> redirectUnauthorizedTo(['/login'])) ,component: ManageadminsComponent}
+
 ];
 
 @NgModule({

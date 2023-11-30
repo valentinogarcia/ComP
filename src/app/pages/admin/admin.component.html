@@ -21,6 +21,7 @@
             <li class="menu-title"> Opciones </li>
             <li class="mt-10"><a id="add" class="btn btn-success" (click)="sendToTags()" > Ir a Tags </a></li>
             <li class="mt-10"><a id="modify" class="btn btn-success" (click)="sendToElementos()">Ir a Elementos</a></li>
+            <li class="mt-10" *ngIf="isSuperAdmin"><a id="modify" class="btn btn-success" (click)="sendToAdmins()">Manage Admins</a></li>          
           </ul>
         </div>
         </div>

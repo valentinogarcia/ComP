@@ -1,30 +1,23 @@
 <div id="body2">
-  <div class="contenedortags text-base" style="border-right: black 1px solid; width: 20%">
-    <div class="contenedortitulo">
-
+  
+  <div class="contenedorseccion" style="margin-right: 7%; margin-bottom: 10%; margin-left: 6%;">
+    
+    <h1 class="mb-2">  Searching Tags</h1>
+    <div class="mb-2" *ngFor="let x of searchingTags" >
+      {{x}}             
+      <button id="delete" class="btn btn-circle" (click)="deleteTag(x)" >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
     </div>
-
-    <div class="tags w-40 bg-[#e9e7e7]">
-            <div class="collapse collapse-arrow ">
-        <h1>  Searching Tags</h1>
-        <div  class="mt-24" *ngFor="let x of searchingTags" >
-          {{x}}             
-          <button id="delete" class="btn btn-circle" (click)="deleteTag(x)" >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-        </div>
-    </div>
-    </div>
-  </div> 
-  <div class="contenedorseccion" style="margin-right: 10%; margin-bottom: 10%; margin-left: 10%;">
+    
     <input style="border-radius: 20px; padding: 0.75%; width: 100%;" placeholder="Busque una seccion..." type="text" name="" id="input" [(ngModel)]="writeTag" (keydown)="addTag($event)">
-    <div class="subsecciones" style="margin-top: 4%; display: flex; flex-wrap: wrap; justify-content: space-between; ">
+    
+    <div class="subsecciones" style="margin-top: 4%; display: flex; flex-wrap: wrap; justify-content: space-between;">
       <div *ngFor="let valor of showTags">
-        <div class="card w-96 h-60 bg-base-100 shadow-xl image-full tarjeta">
+        <div class="card w-80 h-60 bg-base-100 shadow-xl image-full tarjeta">
           <figure><img class="object-fill w-96 h-60" :src={{valor.img}}  alt="Imágen" /></figure>
           <div class="card-body">
             <h2 class="card-title">{{valor.nombre}}</h2>
-            <p>{{valor.descripcion}}</p>
             <div class="card-actions justify-end">
               <button (click)="comparadorButton(valor)" class="btn btn-primary">Comparar</button>
             </div>

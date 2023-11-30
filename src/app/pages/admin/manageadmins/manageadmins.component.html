@@ -1,0 +1,58 @@
+<body>
+    <div id="loading" *ngIf="isAdmin==null">
+        <h1>
+          Autentificando
+        </h1>
+      </div>
+      <div id="loading" *ngIf="isSuperAdmin==false">
+        <h1>
+          Debe ser admin para ingresar a esta sección
+        </h1>
+      </div>
+    <div *ngIf="isAdmin && isSuperAdmin" >
+        <button class="btn btn-circle ml-2" (click)="back()">
+            <  
+        </button>   
+
+        <div *ngIf="adding">
+            <div id="body" class="flex place-content-center flex-row grid grid-rows-1 mb-10 mt-10">
+                <div id="buttons" class="flex items-center">
+                    <ul>
+                        <li>
+                            
+                            <a id="add" class="btn btn-success " (click)="adding=false;currentAdmin={ }"  > Modify Admins </a>
+                        </li>
+                        <li class="mt-10"> Mail: <input class="ml-4" [(ngModel)]="currentAdmin.mail">  </li>
+                        <li> <p>SuperAdmin</p><button class="btn btn-success w-20 h-12" (click)="currentAdmin.superAdmin=true;">Yes</button>
+                            <button class="btn btn-sm btn-primary w-20 h-12" (click)="currentAdmin.superAdmin=false;">No</button></li>
+                        <li> <button class="btn btn-sm btn-primary w-80 h-12 mt-20" (click)="addAdmin()">Submit</button> </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div *ngIf="!adding">
+            
+            <div role="alert" class="alert" *ngIf="currentAdmin">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span> Admin seleccionado: {{currentAdmin.mail}} | SuperAdmin= {{currentAdmin.superAdmin}}</span>
+                <p>SuperAdmin</p><button class="btn btn-success" (click)="currentAdmin.superAdmin=true;changePermisions()">Yes</button>
+                <button class="btn btn-sm btn-primary w-20 h-12" (click)="currentAdmin.superAdmin=false;changePermisions()">No</button>
+            </div>
+            <div id="body" class="flex place-content-center flex-row grid grid-rows-1 mb-10 mt-10">
+                
+                
+                <div id="buttons" class="flex items-center">
+                    <ul >
+                        <li class="menu-title"> Admins </li>
+                        <li class="mt-10" *ngFor="let x of admins"><a id="add" class="btn btn-success " (click)="currentAdmin=x"  >{{x.mail}}</a> <button id="delete" class="btn btn-circle" (click)="deleteAdmin(x.mail)" >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button> </li>
+                        <li class="mt-20"> <a class="btn btn-success" (click)="adding=true;currentAdmin={'mail':'','superAdmin':false  }"> add new admin</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+    

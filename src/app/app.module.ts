@@ -25,6 +25,7 @@ import { SelectActionComponent } from './pages/admin/tags/selectaction/selectact
 import { EditComponent } from './pages/admin/elementos/edit/edit.component';
 import { TagDisplayComponent } from './components/tag-display/tag-display.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ManageadminsComponent } from './pages/admin/manageadmins/manageadmins.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     SelectActionComponent,
     EditComponent,
     TagDisplayComponent,
-    AdminComponent
+    AdminComponent,
+    ManageadminsComponent
   ],
   imports: [
     BrowserModule,

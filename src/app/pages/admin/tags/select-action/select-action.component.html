@@ -1,0 +1,22 @@
+<div class="flex flex-direction">
+    <div *ngFor="let x of tags"> 
+    <div id="Finales">
+        Finales
+        <br>
+        ----------------------------------
+        <br>
+        <button class="button-34" role="button" *ngFor="let f of x.finales" (click)="SendTag(f.nombre)">{{f.nombre}}</button>
+        <br>
+        ###############
+        <br>
+    
+    </div>
+    <div id="Subsecciones">
+        Subsecciones
+        <br>
+        ----------------------------------
+        <br>    
+        <button class="button-34" role="button" *ngFor="let s of x.subsecciones" (click)="SendTag(s.nombre)">{{s.nombre}}</button>     
+    </div>
+    </div>
+</div>

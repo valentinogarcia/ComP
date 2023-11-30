@@ -4,13 +4,16 @@ import { ApiService } from 'src/app/services/api.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-manageadmins',
+  templateUrl: './manageadmins.component.html',
+  styleUrls: ['./manageadmins.component.css']
 })
-export class AdminComponent {
+export class ManageadminsComponent {
+  adding:boolean=false;
   isAdmin:boolean|null=null
   isSuperAdmin:boolean=false;
+  admins:any[]=[]
+  currentAdmin:any;
   constructor(
     private api:ApiService,
     private usr:UserService,
@@ -18,22 +21,26 @@ export class AdminComponent {
   ){}
   ngOnInit(){
     this.api.getAdmins().subscribe(  x=>{ x.forEach( (x:any)=>{
-      
+      this.admins.push(x);
       if(x.mail==this.usr.getCurrentUser()?.email){this.isAdmin= true;this.isSuperAdmin=x.superAdmin} 
      } )}).add(()=>{if(this.isAdmin){console.log("SOS ADMIN DOUUUU");
      }else{ this.isAdmin=false; } 
    })
   }
   back(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/admin'])
   }
-  sendToTags(){
-    this.router.navigate([this.router.url+'/tags'])
+  changePermisions(){
+    this.api.modifyAdmin(this.currentAdmin)
   }
-  sendToElementos(){
-    this.router.navigate([this.router.url+'/elementos'])
+  addAdmin(){
+    console.log(this.currentAdmin);
+    
+    this.api.postAdmin(this.currentAdmin).subscribe( x=>{;
+    } ).add(()=>window.location.reload())
   }
-  sendToAdmins(){//
-    this.router.navigate([this.router.url+'/manage/admins/'])
+  deleteAdmin(x:string){
+    this.api.deleteAdmin(x).subscribe(x=>window.location.reload()
+    ).add( ()=>window.location.reload() )
   }
 }

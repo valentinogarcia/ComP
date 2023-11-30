@@ -7,5 +7,5 @@ export const environment = {
     authDomain: 'comp-c9c19.firebaseapp.com',
     messagingSenderId: '384508645836',
   },
-  api:'http://172.17.0.1:3030'
+  api:'http://cors.0.0.0.0:3030'
 };

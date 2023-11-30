@@ -42,7 +42,7 @@ export class ElementosComponent {
   }
   AddStat(){
     console.log(this.addElemento);
-    
+    if(!this.addStatName){return;}
     if( this.addElemento.stats[this.addStatName] ){ alert("El elemento ya tiene este stat");return}
     this.addElemento.stats[this.addStatName]="";
     this.addElemento.map=Object.keys(this.addElemento.stats)
@@ -60,6 +60,7 @@ export class ElementosComponent {
     }
   }
   AddTag(){
+    if(!this.addTagName){return;}
     //console.log(this.addElemento.tags.find((x:string)=>x==this.addTagName));
         if(this.addElemento.tags.find((x:string)=>x==this.addTagName)){
           alert("El elemento ya tiene este tag");return
@@ -88,9 +89,8 @@ export class ElementosComponent {
     if(!this.addElemento.map||this.addElemento.map.length<=0){alert("El elemento debe tener al menos un stat");return}
     delete this.addElemento.map;
     this.api.postElemento( this.addElemento ).subscribe( x=>console.log(x)
-     )
-     this.addElemento.map=Object.keys(this.addElemento.stats)
-     window.location.reload()
+     ).add( ()=>{this.addElemento.map=Object.keys(this.addElemento.stats)
+      window.location.reload()} )
   }
   ConfirmDelete(){
     console.log(this.editingTag);
